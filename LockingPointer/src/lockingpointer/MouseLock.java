@@ -9,42 +9,68 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import static lockingpointer.Stop.lastX;
+import java.awt.event.MouseListener;
 
 /**
  *
  * @author 20161BSI0349
  */
-public class MouseLock extends MouseAdapter {
+public class MouseLock implements MouseListener {
 
     Robot robot = null;
     static int lastX;
     static int lastY;
-    
+
     static double screenX;
     static double screenY;
-    
-    public MouseLock(double screenX, double screenY){
+
+    public MouseLock(double screenX, double screenY) {
         this.screenX = screenX;
         this.screenY = screenY;
-        
-        try{
+
+        try {
             robot = new Robot();
-        }
-        catch(AWTException e){
+        } catch (AWTException e) {
             System.err.println(e.getStackTrace());
         }
     }
 
-    @Override
+    /*@Override
     public void mouseMoved(MouseEvent e) {
-        System.out.println(e.getButton());
-        if(e.getButton() == MouseEvent.BUTTON2_MASK){
-            lastX = e.getXOnScreen();
-            lastY = e.getYOnScreen();
+    System.out.println(e.getButton());
+    if(e.getButton() == MouseEvent.BUTTON2_MASK){
+    lastX = e.getXOnScreen();
+    lastY = e.getYOnScreen();
+    }
+    else{
+    robot.mouseMove(lastX, lastY);
+    }
+    }*/
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        if (me.getButton() == MouseEvent.BUTTON2) {
+            lastX = me.getXOnScreen();
+            lastY = me.getYOnScreen();
         }
-        else{
-            robot.mouseMove(lastX, lastY);
-        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        
     }
 }
