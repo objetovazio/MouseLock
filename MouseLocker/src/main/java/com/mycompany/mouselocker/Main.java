@@ -5,26 +5,16 @@
  */
 package com.mycompany.mouselocker;
 
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeHookException;
-
 /**
  *
  * @author andre.martins
  */
 public class Main {
     
-    public static void main(String args[]) {    
-        try {
-            GlobalScreen.registerNativeHook();
-        }
-        catch (NativeHookException ex) {
-            System.exit(1);
-        }
-
-        GlobalMouseListener gml = new GlobalMouseListener();
-        
-        //GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
-        GlobalScreen.addNativeMouseListener(gml);
+    public static void main(String args[]) {
+        MouseLockerJFrame jframe = new MouseLockerJFrame();
+        jframe.pack();
+        jframe.setLocationRelativeTo(null);
+        jframe.setVisible(true);
     }
 }

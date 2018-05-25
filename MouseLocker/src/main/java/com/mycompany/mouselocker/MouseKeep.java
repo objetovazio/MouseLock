@@ -5,31 +5,25 @@
  */
 package com.mycompany.mouselocker;
 
-import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author andre.martins
  */
 public class  MouseKeep {
-    
-    public static Robot robot;
     public static boolean isLocked;
     
-    public MouseKeep(){
-        try{
-            robot = new Robot();
+    public static void LockMouse(Robot robot, int x, int y){
+        while(true){
+            robot.mouseMove(x, y);
+            if(!isLocked) break;
         }
-        catch(AWTException e){
-            e.printStackTrace();
-        }
-        isLocked = false;
     }
     
-    public static void LockMouse(int x, int y){
-        while(isLocked){
-            robot.mouseMove(x, y);
-        }
+    public static void pressF11(Robot robot){
+        robot.keyPress(KeyEvent.VK_F11);
+        robot.keyRelease(KeyEvent.VK_F11);
     }
 }
