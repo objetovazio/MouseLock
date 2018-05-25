@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mouselocker;
+package src;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -17,43 +17,39 @@ import org.jnativehook.mouse.NativeMouseListener;
 public class GlobalMouseListener implements NativeMouseListener {
 
     Robot robot;
+
     public GlobalMouseListener() {
-         try{
+        try {
             robot = new Robot();
-        }
-        catch(AWTException e){
+        } catch (AWTException e) {
             e.printStackTrace();
         }
     }
-    
-    
-    
+
     @Override
     public void nativeMouseClicked(NativeMouseEvent nme) {
-        if(nme.getButton() == nme.BUTTON3){
+        if (nme.getButton() == nme.BUTTON3) {
             MouseKeep.isLocked = !MouseKeep.isLocked;
-            
+
             new Thread(new Runnable() {
                 public void run() {
                     MouseKeep.LockMouse(robot, nme.getX(), nme.getY());
                 }
             }).start();
         }
-        
-        if(nme.getButton() == nme.BUTTON2){
+
+        if (nme.getButton() == nme.BUTTON2) {
             MouseKeep.pressF11(robot);
         }
-            
+
     }
 
     @Override
     public void nativeMousePressed(NativeMouseEvent nme) {
-        System.out.println("Pressed");
     }
 
     @Override
     public void nativeMouseReleased(NativeMouseEvent nme) {
-        System.out.println("Released");
     }
-    
+
 }

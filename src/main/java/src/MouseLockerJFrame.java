@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mouselocker;
+package src;
 
 import java.util.logging.LogManager;
 import org.jnativehook.GlobalScreen;
@@ -45,7 +45,6 @@ public class MouseLockerJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mouse Locker");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(260, 170));
         setResizable(false);
 
         welcomeLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -130,6 +129,13 @@ public class MouseLockerJFrame extends javax.swing.JFrame {
         buttonStop.setEnabled(false);
         
         GlobalScreen.removeNativeMouseListener(globalMouseListener);
+        
+        try {
+            GlobalScreen.unregisterNativeHook();
+        }
+        catch (NativeHookException ex) {
+            System.exit(1);
+        }
     }//GEN-LAST:event_buttonStopActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

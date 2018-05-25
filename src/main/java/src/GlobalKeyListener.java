@@ -1,4 +1,4 @@
-package com.mycompany.mouselocker;
+package src;
 
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;

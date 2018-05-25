@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mouselocker;
+package src;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -16,9 +16,8 @@ public class  MouseKeep {
     public static boolean isLocked;
     
     public static void LockMouse(Robot robot, int x, int y){
-        while(true){
+        while(isLocked){
             robot.mouseMove(x, y);
-            if(!isLocked) break;
         }
     }
     
