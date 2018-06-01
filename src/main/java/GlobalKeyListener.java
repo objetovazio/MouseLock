@@ -1,35 +1,45 @@
 
 
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeHookException;
+import java.awt.AWTException;
+import java.awt.Robot;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
+import org.jnativehook.mouse.NativeMouseEvent;
 
 public class GlobalKeyListener implements NativeKeyListener {
 
-    static int lastX;
-    static int lastY;
+    Robot robot;
+
+    public GlobalKeyListener() {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+    }
     
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
-        System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+        if(e.getKeyCode() == e.VC_VOLUME_UP){
+            MouseKeep.isLocked = !MouseKeep.isLocked;
+            
+            new Thread(new Runnable() {
+                public void run() {
+                    MouseKeep.LockMouse(robot);
+                }
+            }).start();
+        }
         
-        if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
-            try {
-                GlobalScreen.unregisterNativeHook();
-            } catch (NativeHookException e1) {
-                e1.printStackTrace();
-            }
+        if(e.getKeyCode() == e.VC_VOLUME_DOWN){
+            MouseKeep.pressF11(robot);
         }
     }
 
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
-        System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
     }
 
     @Override
     public void nativeKeyTyped(NativeKeyEvent e) {
-        System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
     }
 }

@@ -16,6 +16,7 @@ import org.jnativehook.NativeHookException;
 public class MouseLockerJFrame extends javax.swing.JFrame {
 
     private GlobalMouseListener globalMouseListener;
+    private GlobalKeyListener globalKeyListener;
     
     /**
      * Creates new form MouseLockJFrame
@@ -25,6 +26,7 @@ public class MouseLockerJFrame extends javax.swing.JFrame {
         buttonStop.setEnabled(false);
         LogManager.getLogManager().reset();
         globalMouseListener = new GlobalMouseListener();
+        globalKeyListener = new GlobalKeyListener();
     }
 
     /**
@@ -119,7 +121,7 @@ public class MouseLockerJFrame extends javax.swing.JFrame {
             System.exit(1);
         }
         
-        //GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
+        GlobalScreen.addNativeKeyListener(globalKeyListener);
         GlobalScreen.addNativeMouseListener(globalMouseListener);
     }//GEN-LAST:event_buttonStartActionPerformed
 
@@ -128,6 +130,7 @@ public class MouseLockerJFrame extends javax.swing.JFrame {
         buttonStart.setEnabled(true);
         buttonStop.setEnabled(false);
         
+        GlobalScreen.removeNativeMouseListener(globalMouseListener);
         GlobalScreen.removeNativeMouseListener(globalMouseListener);
         
         try {

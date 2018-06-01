@@ -21,6 +21,14 @@ public class  MouseKeep {
         }
     }
     
+    public static void LockMouse(Robot robot){
+        while(isLocked){
+            robot.mouseMove(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        }
+        
+        robot.mouseMove(100, 100);
+    }
+    
     public static void pressF11(Robot robot){
         robot.keyPress(KeyEvent.VK_F11);
         robot.keyRelease(KeyEvent.VK_F11);

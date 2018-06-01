@@ -28,20 +28,15 @@ public class GlobalMouseListener implements NativeMouseListener {
 
     @Override
     public void nativeMouseClicked(NativeMouseEvent nme) {
-        if (nme.getButton() == nme.BUTTON3) {
-            MouseKeep.isLocked = !MouseKeep.isLocked;
-
-            new Thread(new Runnable() {
-                public void run() {
-                    MouseKeep.LockMouse(robot, nme.getX(), nme.getY());
-                }
-            }).start();
+        /*if (nme.getButton() == nme.BUTTON3) {
+        MouseKeep.isLocked = !MouseKeep.isLocked;
+        
+        new Thread(new Runnable() {
+        public void run() {
+        MouseKeep.LockMouse(robot, nme.getX(), nme.getY());
         }
-
-        if (nme.getButton() == nme.BUTTON2) {
-            MouseKeep.pressF11(robot);
-        }
-
+        }).start();
+        }*/
     }
 
     @Override
